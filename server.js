@@ -5,6 +5,7 @@ const express = require("express");
 const moduleRoutes = require("./src/routes/moduleroutes");
 const authRoutes = require("./src/routes/authroutes");
 const profRoutes =require("./src/routes/profroutes")
+const reportRoutes=require("./src/routes/reportroutes")
 const cors = require('cors');
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use("/api/modules", moduleRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/file",profRoutes);
+app.use("/api/report",reportRoutes);
+
 
 
 const PORT = process.env.PORT || 5000;

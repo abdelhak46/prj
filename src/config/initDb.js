@@ -8,8 +8,10 @@ const createTables = async () => {
                 id SERIAL PRIMARY KEY,
                 username VARCHAR(25) UNIQUE NOT NULL,
                 password TEXT NOT NULL,
-                role VARCHAR(20)  CHECK (role IN('superuser','etudiant','prof'))
-            );
+                role VARCHAR(20)  CHECK (role IN('superuser','etudiant','prof') )
+                 )`
+                )
+       await pool.query(`
             CREATE TABLE IF NOT EXISTS modules (
                 id SERIAL PRIMARY KEY,
                 systeme VARCHAR(10) CHECK (systeme IN ('LMD', 'ING')) NOT NULL,
@@ -17,9 +19,16 @@ const createTables = async () => {
                 name VARCHAR(100) NOT NULL,
                 specialité VARCHAR(100),
                 semester INT CHECK (semester BETWEEN 1 AND 2),
-                google_drive_link TEXT NOT NULL
+                google_drive_link TEXT NOT NULL )`
             );
-        `);
+            await pool.query(`
+            CREATE TABLE  IF NOT EXISTS reports (
+              id SERIAL PRIMARY KEY,
+              message TEXT NOT NULL,
+              ip_address VARCHAR(45) NOT NULL,
+             created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,        
+              is_banned BOOLEAN DEFAULT FALSE
+            ) `);
         console.log(" les tables créées avec succès !");
     } catch (error) {
         console.error(" Erreur lors de la création des tables :");
