@@ -1,7 +1,6 @@
 {
   "name": "prg",
   "version": "1.0.0",
-   
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,9 +8,9 @@
     "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "DJAIR mohammed abdelhak ",
+  "author": "",
   "license": "ISC",
-  "description": "BACKEND pour udl-info",
+  "description": "BACKEND pour infoHub",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",

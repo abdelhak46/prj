@@ -1,5 +1,6 @@
 const { pool, testConnection } = require("./database");
 const bcrypt = require('bcryptjs');
+require("dotenv").config();
 testConnection();
 const createTables = async () => {
     try {
@@ -35,8 +36,8 @@ const createTables = async () => {
     } 
 };
 const createSuperUser = async () => {
-    const username = 'admin';
-    const plainPassword = 'admin';
+    const username = process.env.ADMIN_USERNAME;
+    const plainPassword = process.env.ADMIN_PASSWORD;
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
   
     try {
