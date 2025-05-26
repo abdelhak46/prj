@@ -6,7 +6,7 @@ const isLogin = require('../middleware/LoginMiddelware');
 
 
 router.post('/add',isLogin,isSuperUser,createModule);
-router.delete('/delete/:name',isLogin,isSuperUser,deleteModuleByID);
+router.delete('/delete/:id',isLogin,isSuperUser,deleteModuleByID);
 router.get('/get', getModules);
 router.get('/search', searchModules);
 router.get('/distinct-specialites',getDistinctSpecialites);

@@ -45,6 +45,23 @@ require("dotenv").config();
         });
     }
 }
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await pool.query('DELETE FROM user WHERE id = $1', [id]);
+
+        return res.status(200).json({
+            success: true,
+            message: "Utilisateur supprimé avec succès"
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Erreur lors de la suppression de l'utilisateur"
+        });
+    }
+};
     //login controller
     const loginUser = async (req, res) => {
         const { username, password } = req.body;
@@ -94,5 +111,5 @@ require("dotenv").config();
     };
 
 
-    module.exports = { registerUser, loginUser };
+    module.exports = { registerUser, loginUser,deleteUser };
 
