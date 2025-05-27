@@ -4,7 +4,7 @@ const getProfs = async (req, res) => {
     
   
     const result = await pool.query(
-      'SELECT * FROM users WHERE role= "prof"'
+      `SELECT * FROM users WHERE role= 'prof'`
     );
     
     res.json({ 
@@ -12,6 +12,8 @@ const getProfs = async (req, res) => {
       profs: result.rows
     });
   } catch (error) {
+   
+     
     res.status(500).json({
       success : false,
       error: 'Server error' });
