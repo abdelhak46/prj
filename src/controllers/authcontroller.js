@@ -97,6 +97,7 @@ const deleteUser = async (req, res) => {
             res.json({
                 success :true,
                 message: "Connexion réussie ",
+                user:user,
                 token,
             });
         } catch (error) {

@@ -12,6 +12,7 @@ const validateReport = (req, res, next) => {
       return res.status(400).json({ 
         error: 'Message must be between 50 and 500 characters' 
       });
+      
     }
     
     next();

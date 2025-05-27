@@ -2,11 +2,13 @@ const { pool, testConnection } = require("./database");
 const bcrypt = require('bcryptjs');
 require("dotenv").config();
 testConnection();
+
 const createTables = async () => {
     try {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
+                is_banned BOOLEAN DEFAULT FALSE,
                 username VARCHAR(25) UNIQUE NOT NULL,
                 password TEXT NOT NULL,
                 role VARCHAR(20)  CHECK (role IN('superuser','etudiant','prof') )
@@ -26,9 +28,10 @@ const createTables = async () => {
             CREATE TABLE  IF NOT EXISTS reports (
               id SERIAL PRIMARY KEY,
               message TEXT NOT NULL,
-              ip_address VARCHAR(45) NOT NULL,
              created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,        
-              is_banned BOOLEAN DEFAULT FALSE
+              
+              id_user INT,
+              FOREIGN KEY (id_user) REFERENCES users(id)
             ) `);
         console.log(" les tables créées avec succès !");
     } catch (error) {
