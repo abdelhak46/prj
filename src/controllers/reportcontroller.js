@@ -13,16 +13,6 @@ const addreport =async (req, res) => {
        });
     }
 
-      // Check if id-user is banned
-
-     // const bannedCheck = await pool.query(
-       // 'SELECT * FROM reports WHERE id_user = $1 AND is_banned = TRUE LIMIT 1',
-       // [id_user]
-      //);
-      
-      //if (bannedCheck.rows.length > 0) {
-       // return res.status(403).json({ error: 'This users has been banned from submitting reports' });
-      //}
       
       // Insert the report into the database
        const result = await pool.query(
