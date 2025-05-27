@@ -29,7 +29,6 @@ const createTables = async () => {
               id SERIAL PRIMARY KEY,
               message TEXT NOT NULL,
              created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,        
-              
               id_user INT,
               FOREIGN KEY (id_user) REFERENCES users(id)
             ) `);
