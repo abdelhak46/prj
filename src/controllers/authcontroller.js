@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 require("dotenv").config(); 
 // registe newuser and login auto 
    const  registerUser = async (req, res) => {
-    const { username, password, role } = req.body;
+    const { username, password} = req.body;
+    const role = req.body.role || "etudiant";
     try {
         //  Vérifier si aslan rah msajal( name est déjà utilisé)
         const result = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
@@ -48,7 +49,7 @@ require("dotenv").config();
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE FROM user WHERE id = $1', [id]);
+        const result = await pool.query('DELETE FROM users WHERE id = $1', [id]);
 
         return res.status(200).json({
             success: true,

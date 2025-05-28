@@ -34,7 +34,10 @@ const addreport =async (req, res) => {
     try {
       // Fetch all reports, ordered by newest first
       const { rows } = await pool.query(
-        'SELECT * FROM reports ORDER BY created_at DESC'
+        `SELECT r.*, u.is_banned 
+         FROM reports r 
+         LEFT JOIN users u ON r.id_user = u.id 
+         ORDER BY r.created_at DESC`
       );
        res.status(200).json({
         success: true,
