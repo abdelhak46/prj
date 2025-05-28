@@ -10,9 +10,9 @@ const validateReport = async (req, res, next) => {
   }
 
   // vrrifie la longueur du message
-  if (message.length < 50 || message.length > 500) {
+  if (message.length < 15 || message.length > 500) {
     return res.status(400).json({ 
-      error: 'Message must be between 50 and 500 characters' 
+      error: 'Message must be between 15 and 500 characters' 
     });
   }
 
