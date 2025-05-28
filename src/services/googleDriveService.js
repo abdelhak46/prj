@@ -19,7 +19,7 @@ async function authorizeDrive() {
     scopes
   );
   await auth.authorize();
-  return google.drive({ version: 'v3', auth });
+  return google.drive({ version: "v3", auth });
 }
 
 // Trouver l'ID d'un sous-dossier (ex: TD, Cours)
@@ -30,7 +30,7 @@ async function getCategoryFolderId(parentId, category) {
 
   const response = await drive.files.list({
     q: query,
-    fields: 'files(id, name)',
+    fields: "files(id, name)",
   });
 
   return response.data.files[0]?.id;
@@ -59,7 +59,7 @@ async function uploadToDrive(file, parentlink, category) {
   const result = await drive.files.create({
     requestBody: metadata,
     media,
-    fields: 'id, name',
+    fields: "id, name",
   });
 
   fs.unlinkSync(file.path); // nsuprimo l fichier temporair 
