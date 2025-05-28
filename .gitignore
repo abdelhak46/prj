@@ -1,3 +1,4 @@
 node_modules
 .env
 apikey.json.json
+uploads

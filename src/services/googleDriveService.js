@@ -1,21 +1,21 @@
 const fs = require('fs');
 const path = require('path');
+require ('dotenv').config();
 const { google } = require('googleapis');
 
-const apikey = require(path.resolve('apikey.json'));
 
 //extract id frome link (parceque api yas7ak l id machi link)
 const getFolderId = (url) => {
   const parts = url.split('/');
-  return parts[5]?.split('?')[0];
+  return parts[7]?.split('?')[0];
 };
 // auth l google service 
 async function authorizeDrive() {
   const scopes = ['https://www.googleapis.com/auth/drive'];
   const auth = new google.auth.JWT(
-    apikey.client_email,
+    process.env.GOOGLE_CLIENT_EMAIL,
     null,
-    apikey.private_key,
+    process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
     scopes
   );
   await auth.authorize();
